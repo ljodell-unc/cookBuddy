@@ -1,7 +1,9 @@
-import { StyleSheet, Image, Dimensions } from 'react-native';
+import { setStatusBarBackgroundColor } from 'expo-status-bar';
+import { StyleSheet, Image, Dimensions, Button, TouchableOpacity, ScrollView } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
+import Colors from '../constants/Colors';
 import { RootTabScreenProps } from '../types';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
@@ -15,13 +17,67 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
         your own customizable cookbook, to shopping lists, to meal planning, CookBuddy is the app for you!
       </Text>
       
-      <View style={styles.card}>
+      {/*Meal Plan Card*/}
+      <View style={{marginVertical: 30,
+                    width: Dimensions.get('window').width,
+                    height: 150,
+                    alignItems: 'center',}}>
         <Text style={styles.cardTitle}> Today's Meal Plan </Text>
+        <View style={styles.cardContent}>
+          <Image style={styles.cardImage} source={{uri:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl8hOC_dR77UOwmnleVXh_aV7WDb7T2R5hrQ&usqp=CAU'}}/>
+          <View style={styles.cardText}>
+            <Text style={styles.recipeTitle}> Shrimp and Broccoli </Text>
+            <Text style={styles.recipeText}> Total Duration: 30 minutes </Text>
+            <Text style={styles.recipeText}> Prep Time: 20 minutes </Text>
+            <Text style={styles.recipeText}> Cook Time: 10 minutes </Text>
+          </View>
+          
+        </View>
       </View>
+
+      {/*Shopping List Card*/}
+      
+      
+      
+      <ScrollView>
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}> Current Shopping List </Text>
+            
+            <View style={styles.cardContent}>
+              <TouchableOpacity style={styles.listButton}> 
+              </TouchableOpacity>
+              <View style={styles.cardText}>
+                <Text style = {styles.cardTitle}>Shrimp</Text>
+              </View>
+            </View>
+
+            <View style={styles.cardContent}>
+              <TouchableOpacity style={styles.listButton}> 
+              </TouchableOpacity>
+              <View style={styles.cardText}>
+                <Text style = {styles.cardTitle}>Sesame Seeds</Text>
+              </View>
+            </View>
+
+            <View style={styles.cardContent}>
+              <TouchableOpacity style={styles.listButton}> 
+              </TouchableOpacity>
+              <View style={styles.cardText}>
+                <Text style = {styles.cardTitle}>Broccoli</Text>
+              </View>
+            </View>
+
+        </View>
+      </ScrollView>
+
+      
+        
 
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -48,10 +104,50 @@ const styles = StyleSheet.create({
   card: {
     marginVertical: 30,
     width: Dimensions.get('window').width,
-    height: 150,
+    /*height: 150,*/
+    alignItems: 'center',
+
   },
   cardTitle: {
-    marginVertical: 5,
+    marginVertical: 10,
+    fontSize: 20,
+    fontWeight: 'bold',
     
   },
+  cardContent: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+  },
+  cardImage: {
+    flex: 1,
+    height: 100,
+    width: 100,
+    marginLeft: 10,
+    marginBottom: 10,
+    marginRight: 10,
+  },
+  cardText: {
+    flexDirection: 'column',
+    flex: 2,
+  },
+  recipeTitle: {
+    justifyContent: 'center',
+    alignContent: 'center',
+    fontSize: 20,
+  },
+  recipeText: {
+    justifyContent: 'center',
+    alignContent: 'center',
+  },
+  listButton: {
+    height: 40,
+    width: 40,
+    borderBottomLeftRadius: 100,
+    borderBottomRightRadius: 100,
+    borderTopLeftRadius: 100,
+    borderTopRightRadius: 100,
+    backgroundColor: '#C5C5C5',
+    margin: 10,
+  },
+
 });
