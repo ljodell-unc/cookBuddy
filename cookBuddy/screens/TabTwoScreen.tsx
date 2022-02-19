@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: "#E8E8E8",
   },
   /*
   recipeList: {
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
 
   },*/
   recipeCard: {
-    backgroundColor: "#BAF1FF",
+    
     flexDirection: "row",
     alignContent: "stretch",
     marginHorizontal: 10,
@@ -88,5 +89,9 @@ const recipeCard = StyleSheet.create({
     height: 100,
     width: 100,
     margin: 5,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
