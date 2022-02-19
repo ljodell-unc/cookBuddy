@@ -1,10 +1,14 @@
 import { setStatusBarBackgroundColor } from 'expo-status-bar';
 import { StyleSheet, Image, Dimensions, Button, TouchableOpacity, ScrollView } from 'react-native';
-
+import React, {useState} from "react";
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { RootTabScreenProps } from '../types';
+
+
+const [shoppingArray, setShoppingArray] = useState([]);
+
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
   return (
@@ -18,7 +22,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
       </Text>
       
       {/*Meal Plan Card*/}
-      <View style={{marginVertical: 30,
+      <View style={{marginVertical: 10,
                     width: Dimensions.get('window').width,
                     height: 150,
                     alignItems: 'center',}}>
@@ -36,7 +40,6 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
       </View>
 
       {/*Shopping List Card*/}
-      
       
       
       <ScrollView>
@@ -67,6 +70,14 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
               </View>
             </View>
 
+            <View style={styles.cardContent}>
+              <TouchableOpacity style={styles.listButton}> 
+              </TouchableOpacity>
+              <View style={styles.cardText}>
+                <Text style = {styles.cardTitle}>Carrots</Text>
+              </View>
+            </View>
+
         </View>
       </ScrollView>
 
@@ -76,7 +87,6 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
     </View>
   );
 }
-
 
 
 const styles = StyleSheet.create({
