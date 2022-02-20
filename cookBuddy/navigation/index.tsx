@@ -105,5 +105,4 @@ function TabBarIcon(props: {
   color: string;
 }) {
   return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
-  // <FontAwesome name="home" size={24} color="black" />
 }
