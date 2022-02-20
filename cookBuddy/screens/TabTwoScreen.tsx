@@ -1,15 +1,29 @@
-import React from 'react';
-import { StyleSheet, Image, ScrollView, Dimensions, Button, TouchableOpacity } from 'react-native';
+import React, {Component} from 'react';
+import { StyleSheet, Image, ScrollView, Dimensions, Button, TouchableOpacity, Modal} from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
+/*Global Variables*/
+class RecipesArray extends Component<any, any> {
+  static state: string[] = [];
+  
+  constructor(props: string[]) {
+    super(props);
+
+  }
+
+  public static getRecipesArray = () => {
+    return this.state;
+  };
+
+};
+
 export default function TabTwoScreen(this: any) {
+  var recipes = RecipesArray;
+  
   return (
     <View style={styles.container1}>
-      {/*<Text style={styles.title}>Your Cookbook</Text>*/}
-      {/*<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabTwoScreen.tsx" />*/}
       <ScrollView> 
 
         {/* List of Recipes*/}
@@ -43,7 +57,7 @@ export default function TabTwoScreen(this: any) {
                 </Text>
                 
                   <Text style={recipeCard.info}>
-                      This soup might be even better. It's just too gosh dang good, but is it good enough for you?
+                    This soup might be even better. It's just too gosh dang good, but is it good enough for you?
                   </Text> 
               </View>
             </View>
@@ -79,19 +93,10 @@ const styles = StyleSheet.create({
     
     
   },
-  /*
-  recipeList: {
-    flex: 1,
-    flexDirection: "column",
-
-  },*/
   recipeCard: {
     
     flexDirection: "column", // column bc it moves up to down when adding new recipe cards
-    //alignContent: "stretch",
-    //margin: 30,
     marginVertical: 5,
-    //flexWrap: "wrap",
     width: Dimensions.get('window').width,
     backgroundColor: "#889F53",
     borderBottomRightRadius: 10,
@@ -104,12 +109,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
-    // flexWrap: 'wrap',
-  },
-  separator: {
-    //marginVertical: 30,
-    //height: 1,
-    //width: '80%',
   },
   button: {
     backgroundColor: "#4587FF",
