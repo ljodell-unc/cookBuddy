@@ -1,18 +1,18 @@
-import { StyleSheet, Image, ScrollView, Dimensions } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, ScrollView, Dimensions, Button, TouchableOpacity } from 'react-native';
 
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 
-export default function TabTwoScreen() {
+export default function TabTwoScreen(this: any) {
   return (
     <View style={styles.container1}>
       {/*<Text style={styles.title}>Your Cookbook</Text>*/}
       {/*<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabTwoScreen.tsx" />*/}
-      <ScrollView contentContainerStyle={{flex: 1, alignContent: "flex-start"}}>
+      <ScrollView> 
 
         {/* List of Recipes*/}
-        {/*<View style={styles.recipeList}>*/}
 
           {/*Individual recipe cards (image and name)*/}
           <View style={styles.recipeCard}>
@@ -20,9 +20,14 @@ export default function TabTwoScreen() {
               <View style={recipeCard.image}>
                 <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
               </View>
-              <Text style={recipeCard.title}>
-                Good Soup.
-              </Text>
+              <View style={recipeCard.cardText}>
+                <Text style={recipeCard.title}>
+                  Good Soup.
+                </Text>
+                <Text style={recipeCard.info}>
+                  This soup is pretty good.
+                </Text>
+              </View>
             </View>
           </View>
 
@@ -32,15 +37,28 @@ export default function TabTwoScreen() {
               <View style={recipeCard.image}>
                 <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
               </View>
+              <View style={recipeCard.cardText}>
                 <Text style={recipeCard.title}>
                   Another Good Soup.
                 </Text>
+                
+                  <Text style={recipeCard.info}>
+                      This soup might be even better. It's just too gosh dang good, but is it good enough for you?
+                  </Text> 
+              </View>
             </View>
           </View>
+
+          
           
 
         
       </ScrollView>
+
+          <TouchableOpacity style={styles.button} onPress={() => {<Text>Did it work?</Text>}}>
+              <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
+          </TouchableOpacity>
+
       
     </View>
   );
@@ -48,6 +66,7 @@ export default function TabTwoScreen() {
 
 const styles = StyleSheet.create({
   container1: {
+    width: Dimensions.get('window').width,
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -68,11 +87,13 @@ const styles = StyleSheet.create({
   },*/
   recipeCard: {
     
-    flexDirection: "row",
-    alignContent: "stretch",
+    flexDirection: "column", // column bc it moves up to down when adding new recipe cards
+    //alignContent: "stretch",
     //margin: 30,
     marginVertical: 5,
-    flexWrap: "wrap",
+    //flexWrap: "wrap",
+    width: Dimensions.get('window').width,
+    backgroundColor: "#889F53",
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
@@ -83,46 +104,57 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+    // flexWrap: 'wrap',
   },
   separator: {
     //marginVertical: 30,
-    height: 1,
+    //height: 1,
     //width: '80%',
   },
+  button: {
+    backgroundColor: "#4587FF",
+    alignContent: "flex-end",
+    padding: 20,
+  }
 });
 
 const recipeCard = StyleSheet.create({
   cardContent: {
-    flexDirection: 'row',
+    flexDirection: 'row', // it's row because it moves from left to right when doing picture and text
     borderBottomRightRadius: 10,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
     backgroundColor: '#889F53',
+    //flexWrap: 'wrap',
 
   }, 
+  cardText: {
+    flex: 2,
+    flexDirection: 'column', // it's column bc it moves up to down when adding title and info
+    backgroundColor: '#889F53',
+    //flexWrap: 'wrap',
+  },
   title: {
+    marginTop: 5,
+    marginLeft: 10,
     fontSize: 20,
     fontWeight: 'bold',
-    width: Dimensions.get('window').width,
+    //flexWrap: 'wrap',
   },
   info: {
-    /*flex: 3,*/
-    height: 50,
-    width: Dimensions.get('window').width,
-    borderBottomRightRadius: 10,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
+    //flex: 2,
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 15,
+    //flexWrap: 'wrap',
+    
   },
+
   image: {
-    /*flex: 1,*/
+  
     height: 100,
     width: 100,
-    //marginTop: 10,
-    //marginBottom: 20,
-    //marginLeft: 5,
-    //marginRight: 5,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
