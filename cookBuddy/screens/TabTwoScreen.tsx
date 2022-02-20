@@ -6,11 +6,10 @@ import { Text, View } from '../components/Themed';
 
 /*Global Variables*/
 class RecipesArray extends Component<any, any> {
-  static state: string[] = [];
+  static state: string[][] = [["https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg", "soup", "this is some soup"]];
   
   constructor(props: string[]) {
     super(props);
-
   }
 
   public static getRecipesArray = () => {
@@ -22,61 +21,133 @@ class RecipesArray extends Component<any, any> {
 export default function TabTwoScreen(this: any) {
   var recipes = RecipesArray;
   
-  return (
-    <View style={styles.container1}>
-      <ScrollView> 
+  if (recipes.length == 0) {
+    return (
+      <View style={styles.container1}>
+        <Text>You don't have any recipes! Click the button below to add your first recipe.</Text>
+      </View>
+    );
+  } else {
+    var renderedCookbook = renderCookbook(recipes);
 
-        {/* List of Recipes*/}
+    return (
+      <View style={styles.container1}>
+        <ScrollView>
+          {/* List of Recipes*/}
 
-          {/*Individual recipe cards (image and name)*/}
-          <View style={styles.recipeCard}>
-            <View style={recipeCard.cardContent}>
-              <View style={recipeCard.image}>
-                <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
-              </View>
-              <View style={recipeCard.cardText}>
-                <Text style={recipeCard.title}>
-                  Good Soup.
-                </Text>
-                <Text style={recipeCard.info}>
-                  This soup is pretty good.
-                </Text>
-              </View>
-            </View>
-          </View>
+            {/*Individual recipe cards (image and name)*/}
+
+            <Text>
+              {renderedCookbook}
+            </Text>
+             
+
+        </ScrollView>
+
+        <TouchableOpacity style={styles.button} onPress={() => {<Text>Did it work?</Text>}}>
+            <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
+        </TouchableOpacity>
 
 
-          <View style={styles.recipeCard}>
-            <View style={recipeCard.cardContent}>
-              <View style={recipeCard.image}>
-                <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
-              </View>
-              <View style={recipeCard.cardText}>
-                <Text style={recipeCard.title}>
-                  Another Good Soup.
-                </Text>
-                
+      </View>
+    );
+
+    {/*
+    return (
+      <View style={styles.container1}>
+        <ScrollView> 
+
+          {/* List of Recipes*/}
+
+            {/*Individual recipe cards (image and name)*/}
+
+            {/*
+            <View style={styles.recipeCard}>
+              <View style={recipeCard.cardContent}>
+                <View style={recipeCard.image}>
+                  <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
+                </View>
+                <View style={recipeCard.cardText}>
+                  <Text style={recipeCard.title}>
+                    Good Soup.
+                  </Text>
                   <Text style={recipeCard.info}>
-                    This soup might be even better. It's just too gosh dang good, but is it good enough for you?
-                  </Text> 
+                    This soup is pretty good.
+                  </Text>
+                </View>
               </View>
             </View>
-          </View>
+
+
+            <View style={styles.recipeCard}>
+              <View style={recipeCard.cardContent}>
+                <View style={recipeCard.image}>
+                  <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
+                </View>
+                <View style={recipeCard.cardText}>
+                  <Text style={recipeCard.title}>
+                    Another Good Soup.
+                  </Text>
+                  
+                    <Text style={recipeCard.info}>
+                      This soup might be even better. It's just too gosh dang good, but is it good enough for you?
+                    </Text> 
+                </View>
+              </View>
+            </View>
+
+            
+            
 
           
-          
+        </ScrollView>
+
+            <TouchableOpacity style={styles.button} onPress={() => {<Text>Did it work?</Text>}}>
+                <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
+            </TouchableOpacity>
 
         
-      </ScrollView>
+      </View>
 
-          <TouchableOpacity style={styles.button} onPress={() => {<Text>Did it work?</Text>}}>
-              <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
-          </TouchableOpacity>
-
-      
-    </View>
-  );
+  */
+   // );
+  //}
 }
+
+function renderCookbook (recipes:any) {
+  var renderedCookbook = [];
+
+  /*where recipes.state[i][0] == image url, 
+    recipes.state[i][1] == recipe title, 
+    and recipes.state[i][2] == recipe info */
+
+  for (var i = 0; i < recipes.length; i++) {
+    renderedCookbook.push(
+      <View style={styles.recipeCard}>
+            <View style={recipeCard.cardContent}>
+              <View style={recipeCard.image}>
+                <Image style={recipeCard.image} source = {{uri: recipes.state[i][0]}}/>      
+              </View>                                                                      
+              <View style={recipeCard.cardText}>
+                <Text style={recipeCard.title}>
+                  {recipes.state[i][1]}                                                     
+                </Text>
+                <Text style={recipeCard.info}>
+                  {recipes.state[i][2]}                                                     
+
+                </Text>
+              </View>
+            </View>
+          </View>
+    );
+  };
+
+  return (
+    renderedCookbook
+  );
+
+}}};
+
 
 const styles = StyleSheet.create({
   container1: {
