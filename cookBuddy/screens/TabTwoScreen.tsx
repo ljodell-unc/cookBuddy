@@ -16,29 +16,30 @@ export default function TabTwoScreen() {
 
           {/*Individual recipe cards (image and name)*/}
           <View style={styles.recipeCard}>
-            <View style={recipeCard.image}>
-              <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
+            <View style={recipeCard.cardContent}>
+              <View style={recipeCard.image}>
+                <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
+              </View>
+              <Text style={recipeCard.title}>
+                Good Soup.
+              </Text>
             </View>
-            <Text style={recipeCard.info}>
-              Good Soup.
-            </Text>
           </View>
 
 
           <View style={styles.recipeCard}>
-            <View style={recipeCard.image}>
-              <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
+            <View style={recipeCard.cardContent}>
+              <View style={recipeCard.image}>
+                <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
+              </View>
+                <Text style={recipeCard.title}>
+                  Another Good Soup.
+                </Text>
             </View>
-            <>
-              <Text style={recipeCard.info}>
-                Another good Soup.
-              </Text>
-            </>
-            
           </View>
           
 
-        {/*</View>*/}
+        
       </ScrollView>
       
     </View>
@@ -51,6 +52,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "#E8E8E8",
+    margin: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    
+    
   },
   /*
   recipeList: {
@@ -62,9 +70,14 @@ const styles = StyleSheet.create({
     
     flexDirection: "row",
     alignContent: "stretch",
-    marginHorizontal: 10,
+    //margin: 30,
     marginVertical: 5,
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    
   },
   
   title: {
@@ -72,26 +85,48 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   separator: {
-    marginVertical: 30,
+    //marginVertical: 30,
     height: 1,
-    width: '80%',
+    //width: '80%',
   },
 });
 
 const recipeCard = StyleSheet.create({
+  cardContent: {
+    flexDirection: 'row',
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    backgroundColor: '#889F53',
+
+  }, 
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    width: Dimensions.get('window').width,
+  },
   info: {
     /*flex: 3,*/
     height: 50,
     width: Dimensions.get('window').width,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
   },
   image: {
     /*flex: 1,*/
     height: 100,
     width: 100,
-    margin: 5,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    //marginTop: 10,
+    //marginBottom: 20,
+    //marginLeft: 5,
+    //marginRight: 5,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
+
 });

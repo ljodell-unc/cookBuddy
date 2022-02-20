@@ -6,8 +6,7 @@ import { Text, View } from '../components/Themed';
 import Colors from '../constants/Colors';
 import { RootTabScreenProps } from '../types';
 
-
-const [shoppingArray, setShoppingArray] = useState([]);
+ 
 
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>) {
@@ -135,6 +134,10 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginBottom: 10,
     marginRight: 10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
   },
   cardText: {
     flexDirection: 'column',
