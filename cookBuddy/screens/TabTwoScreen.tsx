@@ -6,8 +6,10 @@ import { Text, View } from '../components/Themed';
 
 /*Global Variables*/
 class RecipesArray extends Component<any, any> {
-  static state: string[][] = [["https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg", "soup", "this is some soup"]];
-  
+  static state: string[][] = [];//[["https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg", "soup", "this is some soup"], 
+  //["https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg", "another soup", "this is some very delicious soup"],
+  //["https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg", "SOUP", "SOUP"]];
+
   constructor(props: string[]) {
     super(props);
   }
@@ -19,12 +21,17 @@ class RecipesArray extends Component<any, any> {
 };
 
 export default function TabTwoScreen(this: any) {
-  var recipes = RecipesArray;
+  var recipes = RecipesArray.getRecipesArray();
   
   if (recipes.length == 0) {
     return (
-      <View style={styles.container1}>
-        <Text>You don't have any recipes! Click the button below to add your first recipe.</Text>
+      <View style={styles.noRecipes}>
+        <View style={styles.noRecipes}>
+          <Text style={styles.title}>You don't have any recipes! Click the button below to add your first recipe.</Text>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => {<Text>Did it work?</Text>}}>
+          <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
+        </TouchableOpacity>
       </View>
     );
   } else {
@@ -33,14 +40,12 @@ export default function TabTwoScreen(this: any) {
     return (
       <View style={styles.container1}>
         <ScrollView>
+          
           {/* List of Recipes*/}
-
             {/*Individual recipe cards (image and name)*/}
-
-            <Text>
-              {renderedCookbook}
-            </Text>
-             
+              <Text>
+                {renderedCookbook}
+              </Text>
 
         </ScrollView>
 
@@ -51,89 +56,29 @@ export default function TabTwoScreen(this: any) {
 
       </View>
     );
-
-    {/*
-    return (
-      <View style={styles.container1}>
-        <ScrollView> 
-
-          {/* List of Recipes*/}
-
-            {/*Individual recipe cards (image and name)*/}
-
-            {/*
-            <View style={styles.recipeCard}>
-              <View style={recipeCard.cardContent}>
-                <View style={recipeCard.image}>
-                  <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
-                </View>
-                <View style={recipeCard.cardText}>
-                  <Text style={recipeCard.title}>
-                    Good Soup.
-                  </Text>
-                  <Text style={recipeCard.info}>
-                    This soup is pretty good.
-                  </Text>
-                </View>
-              </View>
-            </View>
-
-
-            <View style={styles.recipeCard}>
-              <View style={recipeCard.cardContent}>
-                <View style={recipeCard.image}>
-                  <Image style={recipeCard.image} source = {{uri: 'https://img.delicious.com.au/5aLcV7cG/del/2021/05/slow-roasted-butter-eggplant-curry-152139-2.jpg'}}/>
-                </View>
-                <View style={recipeCard.cardText}>
-                  <Text style={recipeCard.title}>
-                    Another Good Soup.
-                  </Text>
-                  
-                    <Text style={recipeCard.info}>
-                      This soup might be even better. It's just too gosh dang good, but is it good enough for you?
-                    </Text> 
-                </View>
-              </View>
-            </View>
-
-            
-            
-
-          
-        </ScrollView>
-
-            <TouchableOpacity style={styles.button} onPress={() => {<Text>Did it work?</Text>}}>
-                <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
-            </TouchableOpacity>
-
-        
-      </View>
-
-  */
-   // );
-  //}
+  
 }
 
 function renderCookbook (recipes:any) {
   var renderedCookbook = [];
 
-  /*where recipes.state[i][0] == image url, 
-    recipes.state[i][1] == recipe title, 
-    and recipes.state[i][2] == recipe info */
+  /*where recipes[i][0] == image url, 
+    recipes[i][1] == recipe title, 
+    and recipes[i][2] == recipe info */
 
   for (var i = 0; i < recipes.length; i++) {
-    renderedCookbook.push(
+    renderedCookbook.push( 
       <View style={styles.recipeCard}>
             <View style={recipeCard.cardContent}>
               <View style={recipeCard.image}>
-                <Image style={recipeCard.image} source = {{uri: recipes.state[i][0]}}/>      
+                <Image style={recipeCard.image} source = {{uri: recipes[i][0]}}/> 
               </View>                                                                      
               <View style={recipeCard.cardText}>
                 <Text style={recipeCard.title}>
-                  {recipes.state[i][1]}                                                     
+                  {recipes[i][1]}                                                     
                 </Text>
                 <Text style={recipeCard.info}>
-                  {recipes.state[i][2]}                                                     
+                  {recipes[i][2]}                                                     
 
                 </Text>
               </View>
@@ -146,7 +91,7 @@ function renderCookbook (recipes:any) {
     renderedCookbook
   );
 
-}}};
+}};
 
 
 const styles = StyleSheet.create({
@@ -164,6 +109,17 @@ const styles = StyleSheet.create({
     
     
   },
+  noRecipes: {
+    width: Dimensions.get('window').width,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: "#E8E8E8",
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderBottomLeftRadius: 10,
+  }, 
   recipeCard: {
     
     flexDirection: "column", // column bc it moves up to down when adding new recipe cards
@@ -180,6 +136,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontWeight: 'bold',
+
   },
   button: {
     backgroundColor: "#4587FF",
