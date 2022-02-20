@@ -16,8 +16,7 @@ export default function TabOneScreen({ navigation }: RootTabScreenProps<'Home'>)
       <Text style={styles.title}>Welcome to CookBuddy!</Text>
       {/*<View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="/screens/TabOneScreen.tsx" />*/}
-      <Text> Cookbuddy is the all inclusive app for cooking college students. With features ranging from 
-        your own customizable cookbook, to shopping lists, to meal planning, CookBuddy is the app for you!
+      <Text> Cookbuddy is the all inclusive app for cooking college students! 
       </Text>
       
       {/*Meal Plan Card*/}
