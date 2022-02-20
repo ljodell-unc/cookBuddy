@@ -18,15 +18,26 @@ class RecipesArray extends Component<any, any> {
     return this.state;
   };
 
+  static changed: boolean[] = [false];
+
 };
 
 export default function TabTwoScreen(this: any) {
   var recipes = RecipesArray.getRecipesArray();
+  var status = RecipesArray.changed;
+  if (status[0]) {
+    var renderedCookbook = [];
+    renderedCookbook = renderCookbook(recipes);
+    status[0] = false;
+  }
+  
+
   const [modalVisible, setModalVisible] = useState(false);
   const [modalTransparent, setModalTransparent] = useState(false);
   const [userInput1, setText1] = useState("");
   const [userInput2, setText2] = useState("");
   const [userInput3, setText3] = useState("");
+  
   
   if (recipes.length == 0) {
     return (
@@ -34,6 +45,72 @@ export default function TabTwoScreen(this: any) {
         <View style={styles.noRecipes}>
           <Text style={styles.title}>You don't have any recipes! Click the button below to add your first recipe.</Text>
         </View>
+        <TouchableOpacity style={styles.button} onPress={() => {setModalVisible(true); setModalTransparent(false); console.log("we made it!");}}>
+          <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
+        </TouchableOpacity>
+        <Modal
+          animationType = "slide"
+          transparent = {modalTransparent}
+          visible = {modalVisible}
+          onRequestClose = {()=>{setModalVisible(false); setModalTransparent(true);}} 
+        >
+          <View style={styles.totalForm}>
+            <View style={styles.userInputSpaces}>
+              <Text style={styles.title}>   Picture URL:</Text>
+              <TextInput
+                style={styles.userInputBox}
+                onChangeText = { userInput1 => setText1(userInput1) } > 
+              </TextInput>
+              <Text style={styles.title}>   Title:</Text>
+              <TextInput 
+                  style={styles.userInputBox}
+                  onChangeText = { userInput2 => setText2(userInput2) } > 
+              </TextInput>
+              <Text style={styles.title}>   Info:</Text>
+              <TextInput 
+                  style={styles.userInputBox}
+                  onChangeText = { userInput3 => setText3(userInput3) } > 
+              </TextInput>
+            </View>
+            <View style={styles.submitAndCancel}>
+              <Text style = {styles.cancel} onPress={()=> {setModalVisible(false); setModalTransparent(false); setText1(""); setText2(""); setText3("");}}> 
+                Cancel
+              </Text>
+              <Text style = {styles.submit} onPress={()=> {
+                setModalVisible(false); 
+                setModalTransparent(true); 
+                var entry: string[] = ["" + userInput1, userInput2, userInput3];
+                recipes.push(entry); 
+                status[0] = true;
+                setText1(""); 
+                setText2(""); 
+                setText3("");}}>
+
+                Submit
+              </Text>
+            </View>
+
+          </View>
+
+          
+        </Modal>
+        
+      </View>
+    );
+  } else {
+
+    return (
+      <View style={styles.container1}>
+        <ScrollView>
+          
+          {/* List of Recipes*/}
+            {/*Individual recipe cards (image and name)*/}
+              <Text>
+                {renderedCookbook}
+              </Text>
+
+        </ScrollView>
+
         <TouchableOpacity style={styles.button} onPress={() => {setModalVisible(true); setModalTransparent(false);}}>
           <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
         </TouchableOpacity>
@@ -50,12 +127,12 @@ export default function TabTwoScreen(this: any) {
                 style={styles.userInputBox}
                 onChangeText = { userInput1 => setText1(userInput1) } > 
               </TextInput>
-              <Text style={styles.title}>   Title</Text>
+              <Text style={styles.title}>   Title:</Text>
               <TextInput 
                   style={styles.userInputBox}
                   onChangeText = { userInput2 => setText2(userInput2) } > 
               </TextInput>
-              <Text style={styles.title}>   Info</Text>
+              <Text style={styles.title}>   Info:</Text>
               <TextInput 
                   style={styles.userInputBox}
                   onChangeText = { userInput3 => setText3(userInput3) } > 
@@ -67,12 +144,15 @@ export default function TabTwoScreen(this: any) {
               </Text>
               <Text style = {styles.submit} onPress={()=> {
                 setModalVisible(false); 
-                setModalTransparent(false); 
+                setModalTransparent(true); 
                 var entry: string[] = ["" + userInput1, userInput2, userInput3];
                 recipes.push(entry); 
+                status[0] = true;
                 setText1(""); 
                 setText2(""); 
-                setText3("");}}>
+                setText3("");
+                }}>
+
                 Submit
               </Text>
             </View>
@@ -81,32 +161,6 @@ export default function TabTwoScreen(this: any) {
 
           
         </Modal>
-        
-      </View>
-    );
-  } else {
-    var renderedCookbook = renderCookbook(recipes);
-
-    return (
-      <View style={styles.container1}>
-        <ScrollView>
-          
-          {/* List of Recipes*/}
-            {/*Individual recipe cards (image and name)*/}
-              <Text>
-                {renderedCookbook}
-              </Text>
-
-        </ScrollView>
-
-        <TouchableOpacity style={styles.button} onPress={() => {setModalVisible(true)}}>
-            <Text style={{fontSize: 20, color: "#FFFFFF", fontWeight: "bold",}}> Add a New Recipe </Text>
-        </TouchableOpacity>
-        <Modal style = {styles.modalForm}
-          animationType = "slide"
-          transparent = {true}
-          visible = {modalVisible}
-        />
       </View>
     );
   
@@ -254,10 +308,11 @@ const recipeCard = StyleSheet.create({
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
     backgroundColor: '#889F53',
+    height: 100,
 
   }, 
   cardText: {
-    flex: 2,
+    // flex: 2,
     flexDirection: 'column', // it's column bc it moves up to down when adding title and info
     backgroundColor: '#889F53',
   },
@@ -268,7 +323,7 @@ const recipeCard = StyleSheet.create({
     fontWeight: 'bold',
   },
   info: {
-    marginTop: 5,
+    marginTop: 5, 
     marginLeft: 10,
     marginRight: 15,
     
