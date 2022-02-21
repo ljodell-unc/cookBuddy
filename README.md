@@ -3,10 +3,16 @@ A mobile cooking manager for college students!
 
   **(Created by utlizing React Native with Expo CLI, JavaScript/TypeScript, JSX, and native development view components.)**
  
- <img style="height: 400px; width: 180px;" src="https://bit.ly/3LNmmRh">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3JEX71H">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3oXM7EX"> <img style="height: 400px; width: 180px;" src="https://bit.ly/36gj74D">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3585cNA">
+ <img style="height: 200px; width: 90px;" src="https://bit.ly/3LNmmRh">  <img style="height:  200px; width: 90px;" src="https://bit.ly/3JEX71H">  <img style="height:  200px; width: 90px;" src="https://bit.ly/3oXM7EX"> <img style="height: 200px; width: 90px;" src="https://bit.ly/36gj74D">  <img style="height:  200px; width: 90px;" src="https://bit.ly/3585cNA">
  
- **<p>-------Home Page------------Information Modal--------------Cookbook-----------Add a Recipe Modal-------Cookbook with Recipes----</p>**
+ **<p>-------1-------------2--------------3--------------4--------------5-------</p>**
+<b><p> 1.) Home Screen </p>
+ <p> 2.) Future Plans modal </p>
+ <p> 3.) Cookbook Page (With no recipes) </p>
+ <p> 4.) Add a Recipe modal </p>
+ <p> 5.) Updated Cookbook Page </p></b>
 
+<p>*-*-*-*-*</p>
 
   CookBuddy was my project for the 2022 Pearl Hacks Hackathon! Two other collaborators helped come up with the logos and the idea itself, but I coded the project entirely on my own. CookBuddy is an iPhone application that aims to provide a centralized means for college students, as well as anyone else, to organize everything they need to efficiently work in the kitchen.
 
