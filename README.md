@@ -2,6 +2,11 @@
 A mobile cooking manager for college students! 
 
   **(Created by utlizing React Native with Expo CLI, JavaScript, JSX, and native development view components.)**
+ 
+ <img style="height: 400px; width: 180px;" src="https://bit.ly/3LNmmRh">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3JEX71H">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3oXM7EX"> <img style="height: 400px; width: 180px;" src="https://bit.ly/36gj74D">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3585cNA">
+ 
+ **<p>-------Home Page------------Information Modal--------------Cookbook-----------Add a Recipe Modal-------Cookbook with Recipes----</p>**
+
 
   CookBuddy was my project for the 2022 Pearl Hacks Hackathon! Two other collaborators helped come up with the logos and the idea itself, but I coded the project entirely on my own. CookBuddy is an iPhone application that aims to provide a centralized means for college students, as well as anyone else, to organize everything they need to efficiently work in the kitchen.
 
@@ -14,3 +19,4 @@ A mobile cooking manager for college students!
   Going into this project, I had no previous experience with React Native development/mobile development in general, so after working on it for the duration of the Hackathon (24 hours), I am proud of what I have accomplished! One of the biggest challenges I faced (besides learning the new syntax for native development) was the implementation of arrays within the native environment. I had to re-learn how to initialize, call upon, manipulate, and render them in order to properly assemble the user cookbook.
 
   When thinking about the future of CookBuddy, I hope to implement more complex recipes cards (with type, scan, or link submittal) that the user can click on to see the full entire recipe. Along with this, the shopping list would be able to change dynamically, and if needed, users can look at a recipe and add things to their shopping list without having to navigate outside of their current screen or manually write anything down. CookBuddy would also have user accounts/athentication (for a more personalized experience), an alphabatized cookbook, a cookbook search feature, an ability to connect with friends and share recipes/mealplans, and a tab for measurement conversion (either metric to US or within US itself). CookBuddy may also look to utlize services such as the Google Cloud Suite in order to use cloud storage APIs that can properly store/backup a user's cookbook.
+  
