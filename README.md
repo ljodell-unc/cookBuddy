@@ -1,7 +1,7 @@
 # CookBuddy
 A mobile cooking manager for college students! 
 
-  **(Created by utlizing React Native with Expo CLI, JavaScript, JSX, and native development view components.)**
+  **(Created by utlizing React Native with Expo CLI, JavaScript/TypeScript, JSX, and native development view components.)**
  
  <img style="height: 400px; width: 180px;" src="https://bit.ly/3LNmmRh">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3JEX71H">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3oXM7EX"> <img style="height: 400px; width: 180px;" src="https://bit.ly/36gj74D">  <img style="height: 400px; width: 180px;" src="https://bit.ly/3585cNA">
  
